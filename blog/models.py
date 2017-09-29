@@ -3,9 +3,10 @@ from django.contrib import admin
 
 class BlogsPost(models.Model):
     title = models.CharField(max_length = 150)
-    content = models.TextField()
+    author = models.CharField(max_length=150)
     timestamp = models.DateTimeField()
-    author = models.CharField(max_length = 150)
+    content = models.TextField()
+    category =models.CharField(max_length = 150)
 
 class BlogPostAdmin(admin.ModelAdmin):
     list_display = ('title', 'timestamp')
