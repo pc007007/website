@@ -19,3 +19,18 @@ def post(request,time,id):
         'category' : Category.objects.count()
     }
     return render_to_response('post.html', { 'time':time, 'count' : count, 'post' : post })
+
+def archives(request):
+    count = {
+        'post' : Post.objects.count(),
+        'category' : Category.objects.count()
+    }
+    posts = Post.objects.order_by('-timestamp')
+    year = 0
+    for post in posts:
+        if post.timestamp.year == year:
+            post.flag = 0
+        else:
+            post.flag = 1
+        year = post.timestamp.year
+    return render_to_response('archives.html', { 'count' : count,'posts': posts, })

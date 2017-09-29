@@ -61,7 +61,7 @@
                             </header>
 
                             <div class="post-body" itemprop="articleBody">
-                                {{ post.content|safe|linebreaks|truncatewords_html:10 }}
+                                {{ post.content|safe|linebreaks|truncatewords_html:15 }}
                                 <!--noindex-->
                                 <div class="post-button text-center">
                                     <a class="btn" href="{{ post.timestamp|date:"Ymd" }}/{{ post.id }}" rel="contents">
