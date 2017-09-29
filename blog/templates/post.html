@@ -16,7 +16,7 @@
                     <header class="post-header">
                         <h1 class="post-title" itemprop="name headline">
                             <a class="post-title-link" href="/2017/07/05/introduction-to-google-maglev/" itemprop="url">
-                                Google Maglev 简介
+                                {{ post.title }}
                             </a>
                         </h1>
                         <div class="post-meta">
@@ -51,12 +51,7 @@
                         </div>
                     </header>
                     <div class="post-body" itemprop="articleBody">
-                        <a href="/static/imgs/qq.jpg" class="fancybox" rel="薛之谦">
-                            <img src="/static/imgs/qq.jpg" alt="薛之谦"/></a>
-                        <p>{{ time }}</p>
-                        <p>{{ title }}</p>
-                        <p>Google Maglev 是一个牛逼的负载均衡器，之所以牛逼，是因为它不用部署专门的物理设备，不像 LVS 一样工作在内核，它是运行在通用 Linux
-                            服务器上的大型分布式软件系统。</p>
+                        <p>{{ post.content|safe }}</p>
                         <!--noindex-->
                         <div class="post-button text-center">
                             <a class="btn" href="/" rel="contents">返回</a>

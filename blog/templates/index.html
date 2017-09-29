@@ -1,9 +1,10 @@
 {% extends "base.html" %}
 {% block mainbody %}
-    {% for post in postList %}
+
         <div class="content-wrap">
                 <div id="content" class="content">
                     <section id="posts" class="posts-expand">
+                        {% for post in postList %}
                         <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
                             <link itemprop="mainEntityOfPage"
                                   href="http://simpleyyt.github.io/2017/07/05/introduction-to-google-maglev/">
@@ -60,12 +61,10 @@
                             </header>
 
                             <div class="post-body" itemprop="articleBody">
-                                <a href="/static/imgs/qq.jpg" class="fancybox" rel="薛之谦">
-                                <img src="/static/imgs/qq.jpg" alt="薛之谦"/></a>
-                                {{ post.content }}
+                                {{ post.content|safe|linebreaks|truncatewords_html:10 }}
                                 <!--noindex-->
                                 <div class="post-button text-center">
-                                    <a class="btn" href="{{ post.timestamp|date:"Ymd" }}/{{ post.title }}" rel="contents">
+                                    <a class="btn" href="{{ post.timestamp|date:"Ymd" }}/{{ post.id }}" rel="contents">
                                         阅读全文 &raquo;
                                     </a>
                                 </div>
@@ -80,9 +79,11 @@
                             <footer class="post-footer">
                                 <div class="post-eof"></div>
                             </footer>
+
                         </article>
+                        {% endfor %}
                     </section>
-                    {% endfor %}
+
 <nav class="pagination">
     <span class="page-number current">1</span>
     <a class="page-number" href="/page2">2</a>

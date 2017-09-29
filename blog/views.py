@@ -12,10 +12,10 @@ def index(request):
     }
     return render_to_response('index.html', {'postList': postList, 'count' : count})
 
-def post(request,time,title):
-    blog_list = Post.objects.all()
+def post(request,time,id):
+    post = Post.objects.get(id=id)
     count = {
         'post' : Post.objects.count(),
         'category' : Category.objects.count()
     }
-    return render_to_response('post.html', {'blog_list': blog_list, 'time':time, 'title':title, 'count' : count})
+    return render_to_response('post.html', { 'time':time, 'count' : count, 'post' : post })
