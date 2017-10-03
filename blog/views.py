@@ -2,15 +2,25 @@ from django.shortcuts import render
 from blog.models import Post, Category
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
+from el_pagination.decorators import page_template
 # Create your views here.
-def index(request):
-    #return HttpResponse("<h1>This is my blog homepage</h1>")
-    postList = Post.objects.order_by('-timestamp')
+@page_template('index_list.html')
+def index(request, template = 'index.html', extra_context=None):
     count = {
         'post' : Post.objects.count(),
         'category' : Category.objects.count()
     }
-    return render_to_response('index.html', {'postList': postList, 'count' : count})
+    context = {
+        'postList':Post.objects.order_by('-timestamp'),
+        'count':count,
+    }
+    if extra_context is not None:
+        context.update(extra_context)
+    return render(request, template, context)
+
+
+
+
 
 def post(request,time,id):
     post = Post.objects.get(id=id)
@@ -20,7 +30,8 @@ def post(request,time,id):
     }
     return render_to_response('post.html', { 'time':time, 'count' : count, 'post' : post })
 
-def archives(request):
+@page_template('archives_list.html')
+def archives(request, template = 'archives.html', extra_context = None):
     count = {
         'post' : Post.objects.count(),
         'category' : Category.objects.count()
@@ -33,4 +44,11 @@ def archives(request):
         else:
             post.flag = 1
         year = post.timestamp.year
-    return render_to_response('archives.html', { 'count' : count,'posts': posts, })
+
+    context = {
+        'count' : count,
+        'posts': posts,
+    }
+    if extra_context is not None:
+        context.update(extra_context)
+    return render(request,template, context)

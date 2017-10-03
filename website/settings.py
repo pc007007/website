@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'el_pagination',
 ]
 
 MIDDLEWARE = [
@@ -64,6 +65,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request'
             ],
         },
     },
@@ -121,5 +123,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-#STATIC_ROOT = "/var/www/example.com/static/"
 
+
+EL_PAGINATION_PER_PAGE= 5

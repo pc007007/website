@@ -1,0 +1,73 @@
+
+    {% load el_pagination_tags %}
+{% lazy_paginate postList %}
+    {% for post in postList %}
+    <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+                            <link itemprop="mainEntityOfPage"
+                                  href="http://simpleyyt.github.io/2017/07/05/introduction-to-google-maglev/">
+                            <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+                                <meta itemprop="name" content="pitcheryy">
+                                <meta itemprop="description" content="">
+                                <meta itemprop="image" content="/static/imgs/author.jpeg">
+                            </span>
+                            <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+                                <meta itemprop="name" content="pitcheryy">
+                            </span>
+                            <header class="post-header">
+                                <h1 class="post-title" itemprop="name headline">
+                                    <a class="post-title-link" href="{{ post.timestamp|date:"Ymd" }}/{{ post.id }}"
+                                       itemprop="url">
+                                        {{ post.title }}
+                                    </a>
+                                </h1>
+                                <div class="post-meta">
+                                    <span class="post-time">
+                                        <span class="post-meta-item-icon">
+                                            <i class="fa fa-calendar-o"></i>
+                                        </span>
+                                        <span class="post-meta-item-text">发表于</span>
+                                        <time title="创建于" itemprop="dateCreated datePublished" datetime="{{ post.timestamp }}">
+                                            {{ post.timestamp|date:"Y-m-d"}}
+                                        </time>
+                                    </span>
+                                    <span class="post-category">
+                                        <span class="post-meta-divider">|</span>
+                                        <span class="post-meta-item-icon">
+                                            <i class="fa fa-folder-o"></i>
+                                        </span>
+                                        <span class="post-meta-item-text">分类于</span>
+                                        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                                            <a href="#" itemprop="url" rel="index">
+                                                <span itemprop="name">{{ post.category }}</span>
+                                            </a>
+                                        </span>
+                                    </span>
+                                </div>
+                            </header>
+
+                            <div class="post-body" itemprop="articleBody">
+                                {{ post.content|safe|linebreaks|truncatewords_html:15 }}
+                                <!--noindex-->
+                                <div class="post-button text-center">
+                                    <a class="btn" href="{{ post.timestamp|date:"Ymd" }}/{{ post.id }}" rel="contents">
+                                        阅读全文 &raquo;
+                                    </a>
+                                </div>
+                                <!--/noindex-->
+                            </div>
+                            <div>
+                            </div>
+                            <div>
+                            </div>
+                            <div>
+                            </div>
+                            <footer class="post-footer">
+                                <div class="post-eof"></div>
+                            </footer>
+
+                        </article>
+    {% endfor %}
+{% show_more "<h2 class='text-center' >更多<i class='fa fa-caret-down'></i></h1>"%}
+
+
+
