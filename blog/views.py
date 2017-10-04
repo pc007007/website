@@ -24,11 +24,12 @@ def index(request, template = 'index.html', extra_context=None):
 
 def post(request,time,id):
     post = Post.objects.get(id=id)
+    tags = post.tags.all()
     count = {
         'post' : Post.objects.count(),
         'category' : Category.objects.count()
     }
-    return render_to_response('post.html', { 'time':time, 'count' : count, 'post' : post })
+    return render_to_response('post.html', { 'time':time, 'count' : count, 'post' : post, 'tags':tags })
 
 @page_template('archives_list.html')
 def archives(request, template = 'archives.html', extra_context = None):
