@@ -1,11 +1,6 @@
     {% load el_pagination_tags %}
 {% lazy_paginate posts %}
 {% for post in posts %}
-        {% if post.flag == 1 %}
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-{{ post.timestamp|date:"Y" }}" style="opacity: 1; display: block; transform: translateX(0px);">{{ post.timestamp|date:"Y" }}</h2>
-        </div>
-        {% endif %}
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article" style="opacity: 1; display: block; transform: translateY(0px);">
     <header class="post-header">
       <h1 class="post-title">

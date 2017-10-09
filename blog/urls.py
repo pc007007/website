@@ -4,5 +4,6 @@ from . import views
 urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^(\d{8})/(.+)' , views.post, name='post'),
-    url(r'^archives/$',views.archives, name= 'archives')
+    url(r'^archives/$',views.archives, name= 'archives'),
+    url(r'^category/(.+)', views.category, name='category'),
 ]

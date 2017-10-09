@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block mainbody %}
+<section id="posts" class="posts-collapse">
+    <span class="archive-move-on"></span>
+
+    <span class="archive-page-counter">
+       <h2 class="archive-year motion-element" id="archive-year-{{ post.timestamp|date:"Y" }}" style="opacity: 1; display: block; transform: translateX(0px);">{{ category.name }}<small>分类</small></h2>
+    </span>
+{% include "archives_list.html" %}
+
+  </section>
+{% endblock %}
+
+
+{% block js %}
+    {{ block.super }}
+    <script src="/static/el-pagination/js/el-pagination.js"></script>
+    <script>
+
+        $.endlessPaginate({
+            paginateOnScroll: true,
+            paginateOnScrollMargin: 50,
+            paginateOnScrollChunkSize: 0,
+            onCompleted: function(context, fragment) {
+                $("article").css('opacity',1)
+            }
+        });
+    </script>
+{% endblock %}

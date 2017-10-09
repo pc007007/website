@@ -53,3 +53,21 @@ def archives(request, template = 'archives.html', extra_context = None):
     if extra_context is not None:
         context.update(extra_context)
     return render(request,template, context)
+
+@page_template('category_list.html')
+def category(request,category_name,template = 'category.html', extra_context = None):
+
+    category = Category.objects.get(name=category_name)
+    posts = Post.objects.filter(category=category.id)
+    count = {
+        'post' : Post.objects.count(),
+        'category' : Category.objects.count()
+    }
+    context = {
+        'count' : count,
+        'posts': posts,
+        'category':category
+    }
+    if extra_context is not None:
+        context.update(extra_context)
+    return render(request, template, context)
